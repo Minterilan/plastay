@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>359Partners - System & Offers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Soft background */
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+        .hero-tagline {
+            text-align: center;
+            font-size: 2em; /* Adjusted size for single line */
+            margin-bottom: 20px; /* Adjusted space below */
+            color: #34495e; /* A slightly darker color for prominence */
+            font-weight: 300; /* Lighter weight for modern look */
+        }
+        h2 {
+            font-size: 2.2em;
+            color: #34495e;
+            margin-bottom: 18px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #2980b9;
+            border-radius: 2px;
+        }
+        h3 {
+            font-size: 1.6em;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        h4 {
+            font-size: 1.2em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background-color: #f9f9f9;
+            border-left: 6px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .section ol, .section ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        .section ol li, .section ul li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .offer {
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .offer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .offer h3 {
+            margin-top: 0;
+            font-size: 2em;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e0e0e0;
+            margin-bottom: 20px;
+        }
+        .technology-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .technology-list li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+            background-color: #fefefe;
+            border: 1px solid #f5f5f5;
+            padding: 10px 12px 10px 30px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .technology-list li:before {
+            content: '\2713'; /* Checkmark */
+            color: #27ae60; /* Green check */
+            position: absolute;
+            left: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .technology-list ul { /* Nested list for tech explanations */
+            list-style: disc;
+            padding-left: 15px;
+            margin-top: 5px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        .technology-list ul li {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 3px;
+        }
+        .technology-list ul li:before {
+            content: ''; /* Remove checkmark for nested list */
+            left: auto;
+            top: auto;
+            transform: none;
+        }
+
+        .cost {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-top: 15px;
+            display: block;
+            font-size: 1.2em;
+            text-align: right;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+        }
+        .cost strong {
+            color: #c0392b;
+            font-size: 1.1em;
+        }
+
+        .mermaid {
+            text-align: center;
+            margin: 15px auto;
+        }
+
+        #abm-workflow .mermaid {
+            font-size: 1.2em; /* Yazı boyutunu artır */
+            max-width: 1200px; /* Şemanın maksimum genişliğini ayarla */
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden; /* Ensures border-radius applies to children */
+        }
+        .pricing-table th, .pricing-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .pricing-table th {
+            background-color: #eef4f9;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .pricing-table td {
+            background-color: #ffffff;
+        }
+        .pricing-table tbody tr:nth-child(odd) {
+            background-color: #fdfdfd;
+        }
+        .pricing-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.95em;
+        }
+
+        .email-sequence {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .email-card {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+        }
+        .email-card h5 {
+            color: #2980b9;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        .email-body {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.0; /* Adjusted for maximum compactness */
+            white-space: pre-wrap; /* Preserve line breaks and spaces */
+            word-wrap: break-word; /* Break long words */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>359Partners</h1>
+        <p class="hero-tagline"><strong>Fast, scalable, hyper-personalized outreach with guaranteed success.</strong></p>
+
+        <section id="offers">
+            <h2>Our Offers</h2>
+
+            <div class="offer" id="offer2">
+                <h3>AI-Powered Personalized Outreach</h3>
+                <p>This advanced offer provides highly personalized email outreach by leveraging artificial intelligence to analyze target company websites and craft bespoke messages, ensuring maximum impact.</p>
+                <h4>Process Steps:</h4>
+                <ol>
+                    <li><strong>Lead List Creation:</strong> We begin by creating a meticulously curated lead list tailored to your Ideal Customer Profiles (ICPs).</li>
+                    <li><strong>CRM Exclusion Filtering:</strong> We identify and exclude companies already in your CRM or those with whom you have existing relationships, ensuring we do not contact them.</li>
+                    <li><strong>Sales Team Calendar Integration:</strong> Your sales team's calendar is integrated with our system to schedule meetings at optimal dates and times, ensuring seamless transitions from outreach to sales calls.</li>
+                    <li><strong>Email Identification & Verification (Apollo & FullEnrich):</strong> Email addresses within the lead list are identified using Apollo and then meticulously verified for validity with FullEnrich.
+                        <ul>
+                            <li><strong>Apollo:</strong> A sales intelligence and engagement platform providing access to a large database of contacts and companies. Used for lead generation and finding contact details.</li>
+                        </ul>
+                        <ul>
+                            <li><strong>FullEnrich:</strong> An email verification service that checks email address validity to ensure delivery to legitimate inboxes, reducing bounce rates and protecting sender reputation.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Advanced Personalization (Clay & Custom AI for Russia Market):</strong> Personalized emails are generated by Clay. For the Russia market, our proprietary software visits target company websites, analyzes them, and leverages AI to craft highly tailored messages. (Approximate cost: $0.10 per mail, targeting ~8000 individuals for 3 rounds of mail).
+                        <ul>
+                            <li><strong>Clay:</strong> A data enrichment and automation platform used here to visit target company websites, gather information, and leverage AI to craft personalized email content based on that data.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Targeted Product Recommendation:</strong> Our system identifies and highlights specific products or services relevant to the scanned customer profiles. For example, for a PVC pipe manufacturer, we might recommend "Sunflex" or similar relevant products.</li>
+                    <li><strong>Domain & Email Account Acquisition:</strong> We acquire the necessary number of domains and email accounts based on the scale of the outreach campaign.</li>
+                    <li><strong>Email Account Warm-up:</strong> All newly acquired email accounts undergo a rigorous warm-up process to build sender reputation and ensure high inbox deliverability.</li>
+                    <li><strong>Email Sequence Planning:</strong> Strategic email sequences are planned and developed to guide prospects through the sales funnel effectively, with emails sent using USA IPs.</li>
+                    <li><strong>Instantly Email Sending:</strong> Personalized emails are sent to verified contacts using Instantly.
+                        <ul>
+                            <li><strong>Instantly:</strong> An email outreach platform used for sending cold emails and managing campaigns. It automates email sequences, tracks performance, and manages multiple inboxes.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+            </div>
+
+            <section id="abm-workflow" class="section">
+                <h2>ABM Parallel Tracking Workflow</h2>
+                <p>Our Account-Based Marketing (ABM) strategy involves parallel tracking workflows tailored for different key stakeholders within a target account: VP/CEO Track and Purchasing/Project Track. This ensures highly targeted engagement from initial LinkedIn connection to a successful booking.</p>
+                <div class="mermaid">
+                    graph TD
+                        subgraph VP/CEO Track
+                            A[LinkedIn Engagement + Connection --> VP/CEO] -->|ACCEPTED| B(Light Intro Strategic)
+                            A -->|NOT RESPONDED| C(Cold Email #1 Strategic Value)
+                            B -->|RESPONDED| D[Call to Action Exec Meeting]
+                            B -->|Unanswered| C
+                            C -->|NOT RESPONDED| E[Gift --> Cold Email #2 ROI Sheet]
+                            D -->|POSITIVE| F[BOOKED -- VP/CEO]
+                            E -->|NOT RESPONDED| G[Direct Phone Call CSO]
+                            E -->|Introduces to VP/CEO| F
+                            G -->|POSITIVE| F
+                        end
+
+                        subgraph Purchasing / Project
+                            H[LinkedIn Engagement + Connection --> Purchasing/PM] -->|ACCEPTED| I(Light Intro Process/Implementation)
+                            H -->|NOT RESPONDED| J(Cold Email #1 Operational Angle)
+                            I -->|RESPONDED| K[Case Study / ROI One-pager]
+                            J -->|RESPONDED| K
+                            J -->|NOT RESPONDED| L[Call to Action Manager Meeting]
+                            K -->|POSITIVE| L
+                            K -->|NOT RESPONDED| L
+                            L --> M[BOOKED - Manager Champion]
+                        end
+
+                        M -- Introduces to VP/CEO (from Purchase) --> F
+                </div>
+                <p><strong>Why ABM Tracking is Crucial:</strong> Account-Based Marketing (ABM) tracking is essential for modern B2B sales because it shifts the focus from broad lead generation to targeted engagement with high-value accounts. By meticulously tracking interactions across different stakeholders within a target account, we can tailor our outreach and messaging, ensuring maximum relevance and impact. This approach minimizes wasted effort, accelerates sales cycles, and significantly increases conversion rates by concentrating resources on the accounts most likely to close.</p>
+                <p><strong>How ABM Tracking Works:</strong> Our ABM tracking workflow involves segmenting key stakeholders into distinct tracks (e.g., VP/CEO and Purchasing/Project). Each track follows a personalized journey, beginning with LinkedIn engagement and progressively moving through strategic cold emails, direct calls, and content tailored to their specific roles and concerns. We monitor responses and interactions at each stage, allowing us to dynamically adjust our strategy. For instance, a positive response from a VP/CEO might lead to an executive meeting, while engagement from a purchasing manager could lead to a case study presentation. Critical to this process is the ability for different tracks to converge, such as a purchasing manager introducing us to a VP/CEO, ensuring a holistic approach to account penetration.</p>
+                <p><strong>Potential Gains:</strong> Implementing this parallel ABM tracking workflow leads to several significant benefits:
+                    <ul>
+                        <li><strong>Higher Conversion Rates:</strong> Focusing on specific, high-value accounts with tailored strategies drastically improves the likelihood of converting prospects into customers.</li>
+                        <li><strong>Accelerated Sales Cycles:</strong> By engaging multiple stakeholders simultaneously and addressing their unique needs, the decision-making process is streamlined and expedited.</li>
+                        <li><strong>Improved ROI:</strong> Resources are allocated more efficiently, targeting efforts where they are most likely to yield results, leading to a better return on investment.</li>
+                        <li><strong>Enhanced Customer Relationships:</strong> Personalized and relevant communication fosters stronger relationships with key decision-makers, building trust and long-term partnerships.</li>
+                        <li><strong>Better Forecasting:</strong> Detailed tracking and insights into account engagement allow for more accurate sales forecasting and pipeline management.</li>
+                    </ul>
+                </p>
+            </section>
+
+        </section>
+
+        <section id="guarantees" class="section">
+            <h2>Our Guarantees</h2>
+            <p>We are confident in our ability to deliver results. Our commitment to your success is reflected in our transparent pricing model: <strong>we do not charge the full service fee until we achieve mutually agreed-upon performance metrics (e.g., a specific number of qualified meetings or offers). If these targets are not met, the remaining balance of the full service fee will not be collected.</strong> This ensures that your investment is directly tied to tangible outcomes, aligning our goals with yours.</p>
+            <p>Our success is your success. We work diligently to secure meetings and opportunities, and only once these are delivered do we collect the full service fee.</p>
+        </section>
+
+        
+
+        <section id="email-sequence-examples" class="section">
+            <h2>Email Sequence Examples</h2>
+            <div class="offer" id="offer2">
+                <h3>AI-Powered Personalized Outreach</h3>
+                <h4>Email Sequence 1 - Plastay:</h4>
+                <div class="email-sequence">
+                    <div class="email-card">
+                        <h5>Email 1 – First Touch (Personal + Sample Offer)</h5>
+                        <p><strong>Subject:</strong> Stronger, long-lasting PVC compounds with Sunfleks(DOTP)</p>
+                        <div class="email-body">
+                            <p>Hi Ismet,</p>
+                            <p>It’s impressive to see a bilingual leader in chemical trade who also co-founded a gaming startup—I imagine balancing PVC compounds can feel a bit like balancing game mechanics sometimes.</p>
+                            <p>I also noticed that Plastay exports over 70% of its production globally, with a modern facility producing ~75,000 tons annually. That scale is truly remarkable.</p>
+                            <p>We provide PVC plasticizers (Sunfleks(DOTP), Versafleks(DOP), Med-X(DOP)) designed to enhance impact resistance and weather durability for window profiles and compounds. By combining them with ASMIX, manufacturers achieve significantly longer product lifetimes.</p>
+                            <p>Would you be open to receiving a sample and perhaps arranging a short meeting to discuss compatibility with your product lines?</p>
+                            <p>Best regards,<br/>Ismet</p>
+                        </div>
+                    </div>
+
+                    <div class="email-card">
+                        <h5>Email 2 – Industry Update (Authority + Meeting Offer)</h5>
+                        <p><strong>Subject:</strong> EU restrictions push manufacturers to alternative plasticizers</p>
+                        <div class="email-body">
+                            <p>Hi Ismet,</p>
+                            <p>Given Plastay’s strong export focus, I thought you might find this update useful:<br/>📢 The European Chemicals Agency (ECHA) recently tightened restrictions on several phthalate-based plasticizers (DEHP, DBP, BBP, DIBP). As a result, many producers are now shifting to non-phthalate, REACH-compliant alternatives.</p>
+                            <p>We supply Sunfleks(DOTP), Versafleks(DOP), and Med-X(DOP), which are designed to keep PVC compounds and profiles durable, compliant, and high-performing in international markets.</p>
+                            <p>Would you be interested in a quick 10-minute call to see how these materials could benefit Plastay’s export-driven production?</p>
+                            <p>Best regards,<br/>Mert</p>
+                            <p>P.S. With Sunfleks(DOTP) + ASMIX, we are helping global manufacturers achieve impact-resistant and long-lasting PVC profiles.</p>
+                        </div>
+                    </div>
+
+                    <div class="email-card">
+                        <h5>Email 3 – Final Reminder (Soft Close)</h5>
+                        <p><strong>Subject:</strong> Following up on Sunfleks(DOTP) for Plastay</p>
+                        <div class="email-body">
+                            <p>Hi Ismet,</p>
+                            <p>Just a quick follow-up — I previously reached out about PVC plasticizers (Sunfleks(DOTP), Versafleks(DOP), Med-X(DOP)) and how they could support Plastay’s large-scale compound and stabilizer production.</p>
+                            <p>If improving durability and ensuring compliance with EU regulations is something you’re considering, I’d be happy to send samples or arrange a short call.</p>
+                            <p>If the timing isn’t right, no worries — I’ll step back for now and we can reconnect later.</p>
+                            <p>Best regards,<br/>Mert</p>
+                        </div>
+                    </div>
+                </div>
+                <h4>Email Sequence 2 - Polyplast Müller:</h4>
+                <div class="email-sequence">
+                    <div class="email-card">
+                        <h5>Email 1 – First Touch (Personal + Sample Offer)</h5>
+                        <p><strong>Subject:</strong> High-performance plasticizers for cable and compound applications</p>
+                        <div class="email-body">
+                            <p>Hi Torsten,</p>
+                            <p>I really liked how Polyplast Müller has scaled from Straelen to Bingen while keeping hands-on expertise in masterbatch and cable compounds. That is a great example of turning regional craftsmanship into global subcontracting strength.</p>
+                            <p>With your 17+ years of experience in procurement and distribution, I thought this might be relevant. We provide PVC plasticizers Sunfleks (DOTP), Versafleks (DOP), and Med-X (DOP) that can significantly enhance durability, flexibility, and processing performance in cable compound and masterbatch applications.</p>
+                            <p>By combining Sunfleks (DOTP) with ASMIX, manufacturers achieve better mechanical stability, improved resistance to external conditions, and extended product lifetime.</p>
+                            <p>Would you be open to a short call and receiving a sample for testing?</p>
+                            <p>Best regards,<br/>Ismet</p>
+                        </div>
+                    </div>
+
+                    <div class="email-card">
+                        <h5>Email 2 – Industry Update (Authority + Meeting Offer)</h5>
+                        <p>We will generate a customized Call to Action (CTA) for each client using AI, based on the products manufactured by the Ideal Customer Profile (ICP) and your guidance.</p>
+                        <p><strong>Subject:</strong> EU moves toward safer plasticizers in cable compounds</p>
+                        <div class="email-body">
+                            <p>Hi Torsten,</p>
+                            <p>As a cable compound and masterbatch specialist, you may find this update relevant. The European Chemicals Agency (ECHA) has tightened restrictions on several phthalate-based plasticizers such as DEHP, DBP, BBP, and DIBP. Many compounders are now shifting to non-phthalate, REACH-compliant alternatives to ensure sustainable market access.</p>
+                            <p>We supply Sunfleks (DOTP), Versafleks (DOP), and Med-X (DOP), which are fully REACH-compliant and help strengthen compound performance, durability, and compliance across industrial applications.</p>
+                            <p><strong>Option A – Industry CTA:</strong><br/>Would you be interested in sharing how Polyplast Müller is approaching these regulatory changes and exploring if our solutions could complement your strategy?</p>
+                            <p><strong>Option B – Visit CTA:</strong><br/>I will be in Istanbul during week 47 of this year. Would you be open to meeting in person to discuss potential cooperation?</p>
+                            <p><strong>Option C – Hybrid CTA:</strong><br/>Would you prefer a short 10-minute call to exchange insights on regulatory trends, or should we schedule an in-person meeting when I am in Istanbul during week 47?</p>
+                            <p>Best regards,<br/>Ismet</p>
+                            <p>P.S. With Sunfleks (DOTP) and ASMIX, we support compounders worldwide in producing impact-resistant, durable, and long-lasting cable and compound solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="email-card">
+                        <h5>Email 3 – Final Reminder (Soft Close)</h5>
+                        <p><strong>Subject:</strong> Following up on Sunfleks (DOTP) for cable compounds</p>
+                        <div class="email-body">
+                            <p>Hi Torsten,</p>
+                            <p>Just a quick follow-up. I previously reached out about our PVC plasticizers Sunfleks (DOTP), Versafleks (DOP), and Med-X (DOP) and how they could support Polyplast Müller’s cable compound and masterbatch applications.</p>
+                            <p>If improving durability, flexibility, and EU compliance is on your agenda, I would be glad to provide samples or schedule a short call.</p>
+                            <p>If the timing is not right, that is absolutely fine. We can reconnect later when it suits you better.</p>
+                            <p>Best regards,<br/>Ismet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="email-deliverability" class="section">
+            <h2>Why Our Emails Don't Land in Spam</h2>
+            <p>Email deliverability is crucial for successful outreach. We employ several key strategies and technologies to ensure your emails reach the inbox and maintain a strong sender reputation:</p>
+            <ul>
+                <li><strong>Email Warm-up:</strong> New email accounts are gradually "warmed up" by sending a low volume of emails initially and slowly increasing it over time. This process builds trust with email service providers, signaling that the emails are legitimate and not spam.</li>
+                <li><strong>Email Verification (FullEnrich):</strong> Before sending, all email addresses are meticulously verified using tools like FullEnrich. This ensures that we are sending emails to valid and active inboxes, drastically reducing bounce rates and protecting your sender reputation. Sending to invalid addresses can severely damage your domain's reputation and lead to emails being marked as spam.</li>
+                <li><strong>Advanced Personalization (Clay & Custom AI):</strong> Especially in our advanced offer, we leverage AI-powered personalization through platforms like Clay and our custom AI for the Russia market. Sending highly personalized and relevant emails significantly increases engagement and reduces the likelihood of being flagged as spam, as recipients are more likely to open and interact with content tailored to them.</li>
+                <li><strong>Reputation Management (Instantly):</strong> Our email sending platforms like Instantly are configured to manage sending volume and frequency effectively across multiple accounts and domains. This distributed sending strategy, combined with continuous monitoring, helps maintain a healthy sender score.</li>
+                <li><strong>USA IP Usage:</strong> We utilize USA-based IP addresses for sending emails. This practice enhances deliverability and reduces the likelihood of emails being flagged as spam, as USA IPs are generally considered more trustworthy by email service providers.</li>
+                <li><strong>Highly Targeted Lead Lists & Content Alignment:</strong> Our lead lists are meticulously curated to ensure they consist of highly targeted prospects whose profiles align perfectly with the content of our emails (Ideal Customer Profile - ICP alignment). This relevance drastically increases engagement rates and signals to email providers that our communications are valuable, not spam.</li>
+            </ul>
+            <p>By combining these strategies, we ensure high deliverability rates, allowing your messages to consistently reach your target audience's inboxes.</p>
+        </section>
+
+        <section id="pricing-summary" class="section">
+            <h2>Our Pricing at a Glance</h2>
+            <p>Our commitment to your success is reflected in our flexible pricing model, ensuring you pay for results.</p>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Cost Item</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Initial Setup Fee</td>
+                        <td>One-time cost for system setup, domain/email acquisition, and warm-up.</td>
+                        <td>€3,000 EUR</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Service Fee (initial, until targets met)</td>
+                        <td>Monthly agency fee until performance metrics are met.</td>
+                        <td>€800 EUR/month</td>
+                    </tr>
+                    <tr>
+                        <td>Total 6-Month Service Fee (when targets met)</td>
+                        <td>Total service fee for the 6-month commitment, distributed after targets are met.</td>
+                        <td>€18,000 EUR</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Structure After Targets Met</td>
+                        <td>Remaining balance (Total 6-Month Service Fee - Initial Monthly Fees Paid) divided by remaining months.</td>
+                        <td>Varies</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Our goal is to align our success with yours, ensuring that you only pay additional fees when our system delivers tangible results.</p>
+
+            <h4>Detailed Payment Timelines for Outreach Only</h4>
+
+            <h5>Offer 1: AI-Powered Personalized Outreach - Payment Timeline</h5>
+            <div class="mermaid">
+ graph TD
+    A[Initial Setup: 3000 EUR] --> B(Month 1: 800 EUR) --> C(Month 2: 800 EUR) --> D(Month 3: 800 EUR)
+    D -- "Targets Met in Month 3" --> E{Remaining Balance: 15600 EUR}
+    E --> F(Monthly Payments for Months 4,5,6: 5200 EUR)
+            </div>
+
+            <h4>Detailed Payment Timelines for Outreach + ABM Parallel Tracking</h4>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Cost Item</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Initial Setup Fee</td>
+                        <td>One-time cost for system setup, domain/email acquisition, and warm-up.</td>
+                        <td>€3,000 EUR</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Service Fee (initial, until targets met)</td>
+                        <td>Monthly agency fee until performance metrics are met.</td>
+                        <td>€1,000 EUR/month</td>
+                    </tr>
+                    <tr>
+                        <td>Total 6-Month Service Fee (when targets met)</td>
+                        <td>Total service fee for the 6-month commitment, distributed after targets are met.</td>
+                        <td>€30,000 EUR</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Structure After Targets Met</td>
+                        <td>Remaining balance (Total 6-Month Service Fee - Initial Monthly Fees Paid) divided by remaining months.</td>
+                        <td>Varies</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Offer 2: AI-Powered Outreach + ABM Parallel Tracking - Payment Timeline</h5>
+            <div class="mermaid">
+ graph TD
+    A2[Initial Setup: 3000 EUR] --> B2(Month 1: 1000 EUR) --> C2(Month 2: 1000 EUR) --> D2(Month 3: 1000 EUR)
+    D2 -- "Targets Met in Month 3" --> E2{Remaining Balance: 27000 EUR}
+    E2 --> F2(Monthly Payments for Months 4,5,6: 9000 EUR)
+            </div>
+
+        </section>
+
+        <footer>
+            <p>&copy; 2023 359Partners. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html> 
